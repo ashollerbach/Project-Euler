@@ -2,39 +2,39 @@
 //
 
 #include <iostream>
+#include <cmath>
 
 
-static bool checkPrime(long num) {
-    for (long i = 2; i < num / 2; i++) {
-        if (num % i == 0) {
-            return false;
-        }
-    }
-    return true;
+static bool checkPrime(int num) {
+	for (long long j = 5; j * j < num; j += 6) { // j is reading garbage
+		if (num % j == 0 || num % (j+2) == 0) {
+			return false;
+		}
+	}
+	return true;
 }
 
-int main()
-{
-    long largest_prime = 0;
-    long long target = 48748765456;
-    
-    for (long i = 2; i < target / 2; i++) {
-        if (target % i == 0) {
-            if (checkPrime(i)) {
-                largest_prime = i;
-            }
-        }
-    }
-    std::cout << largest_prime;
+int main(){
+
+	long long largestPrime{ 0 };
+	long long number = 600851475143;
+
+	//600851475143
+	//13195
+
+	for (long long i = 5; i * i < number; i += 6) {
+			if (number % i == 0) {
+				if (checkPrime(i)) {
+					largestPrime = i;
+					std::cout << i << std::endl;
+				}
+			}
+			if (number % (i + 2) == 0) {
+				if (checkPrime(i + 2)) {
+					largestPrime = i + 2;
+					std::cout << i + 2 << std::endl;
+				}
+			}
+		}
+	std::cout << largestPrime;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
